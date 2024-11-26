@@ -1,5 +1,5 @@
-import bcrypt
-import mysql.connector
+import bcrypt #Libreria para protejer las contrasenas de usuarios y hacer la BD mas segura
+import mysql.connector #Libreria para conectarnos a la BD de Mysql XAMPP
 
 # Conexión a la base de datos
 def conectar_db():
@@ -31,7 +31,6 @@ def crear_cuenta():
     # Verificamos si el email ya está registrado
     cursor.execute("SELECT * FROM Usuarios WHERE Email = %s", (email,))
     usuario_existente = cursor.fetchone()
-
     if usuario_existente:
         print("El email ya está registrado. Intenta con otro.")
     else:
@@ -66,7 +65,7 @@ def iniciar_sesion():
     if conexion is None:
         return
     cursor = conexion.cursor()
-
+    #Pedimos al usuario que ingrese el correo y contrasena
     correo = input("Introduce tu correo: ")
     contraseña = input("Introduce tu contraseña: ")
 
@@ -127,7 +126,7 @@ def crear_lista_reproduccion(usuario_id):
 def agregar_cancion_a_lista(usuario_id):
     conexion = conectar_db()
     cursor = conexion.cursor()
-
+    #Pedimos al usuario que ingrese el ID de la lista de reproduccion y la cancion a agregar
     lista_id = input("Introduce el ID de la lista de reproducción: ")
     cancion_id = input("Introduce el ID de la canción que deseas agregar: ")
 
